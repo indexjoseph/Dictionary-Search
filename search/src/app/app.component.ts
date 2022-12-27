@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'search';
+  public searchInput!: string;
+  public programmingLanguages = [
+      'Python','TypeScript','C','C++','Java',
+      'Go','JavaScript','PHP','Ruby','Swift','Kotlin'
+ ]
 }

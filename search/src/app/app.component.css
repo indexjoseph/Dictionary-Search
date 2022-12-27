@@ -1,22 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 body{
-    background: #343a40;
+    background: #FAF8F6;
+}
+
+.search-icon{
+  justify-content: space-around;
+  height: 20px;
+  position: relative;
+    left: 5px;
+}
+.navbar{
+  background-color: #CFCDC2;
+}
+
+.display-2 {
+  font-size: small;
+  letter-spacing: 3px;
+  color:#343a40;
+  font-weight: 500;
+  position: relative;
+    left: 19px;
+    justify-self: start;
 }
 
 .display-1{
-    color: #CECFD3;
+    color: #343a40;
     white-space: nowrap;
     font-size: xx-large;
     font-weight: 500;
 }
 .height{
-
     height: 100vh;
 }
 
 .form{
-
     position: relative;
 }
 

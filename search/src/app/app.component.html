@@ -2,19 +2,33 @@
 
 
 <html>
-  
+   <header>
+   <nav class="navbar">
+        <a class ="display-2" style="text-decoration: none;">Prefix<img class="search-icon" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"></a>
+   </nav>
+   </header>
 <body>
    <div class="container">
-
       <div class="row height d-flex justify-content-center align-items-center">
 
         <div class="col-md-6">
          <div class="p-5 text-center">
-            <h1 class="display-1">Prefix Search </h1>
+            <h1 class="display-1">Prefix Search</h1>
           </div>
           <div class="form">
             <i class="fa fa-search"></i>
-            <input type="text" class="form-control form-input" placeholder="Search anything...">
+            <section>
+            <input name="searchInput" type="text" class="form-control form-input" placeholder="Search anything...">
+         </section>
+            <article>
+               <h6> Results </h6>
+               <ul>
+                 <li *ngFor="let programmingLanguage of
+                               programmingLanguages | search: searchInput">
+                    {{programmingLanguage}}
+                 </li>
+               </ul>
+           </article>
             <span class="left-pan"><i class="fa fa-microphone"></i></span>
           </div>
         </div>
