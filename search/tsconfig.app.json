@@ -7,6 +7,9 @@
       "@angular/localize"
     ]
   },
+  "paths": {
+    "fs": ["./node_modules/fs-web"]
+  },
   "files": [
     "src/main.ts"
   ],

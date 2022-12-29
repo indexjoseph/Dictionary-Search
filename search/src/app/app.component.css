@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
 body{
-    background: #FAF8F6;
+    background: #2C2F33;
 }
 
 .search-icon{
@@ -25,7 +25,7 @@ body{
 }
 
 .display-1{
-    color: #343a40;
+    color: #FAF8F6;
     white-space: nowrap;
     font-size: xx-large;
     font-weight: 500;

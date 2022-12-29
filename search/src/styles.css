@@ -2,3 +2,5 @@
 @import "~bootstrap/dist/css/bootstrap.css"; 
 @import "~font-awesome/css/font-awesome.css";  
 @import url("https://use.fontawesome.com/releases/v5.7.2/css/all.css");
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

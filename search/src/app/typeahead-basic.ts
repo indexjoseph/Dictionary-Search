@@ -1,9 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatSelect } from '@angular/material/select';
-import { ReplaySubject, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
-import { readFileSync } from 'fs';
+import { Component } from '@angular/core';
 import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -72,22 +67,21 @@ const states = [
 	'Wyoming',
 ];
 
-interface Website {
-  id: string;
-  name: string;
-}
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-	// templateUrl: './typeahead-basic.html',
-
+	selector: 'ngbd-typeahead-basic',
+	standalone: true,
+	imports: [NgbTypeaheadModule, FormsModule, JsonPipe],
+	templateUrl: './app.component.html',
+	styles: [
+		`
+			.form-control {
+				width: 300px;
+			}
+		`,
+	],
 })
-export class AppComponent {
-  title = 'search';
-
-  public model: any;
+export class NgbdTypeaheadBasic {
+	public model: any;
 
 	search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
 		text$.pipe(
@@ -97,10 +91,4 @@ export class AppComponent {
 				term.length < 2 ? [] : states.filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10),
 			),
 		);
-  
-//   public searchInput: string;
-//   public programmingLanguages = [
-//       'Python','TypeScript','C','C++','Java',
-//       'Go','JavaScript','PHP','Ruby','Swift','Kotlin'
-//  ]
 }

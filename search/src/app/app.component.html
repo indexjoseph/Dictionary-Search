@@ -4,7 +4,7 @@
 <html>
    <header>
    <nav class="navbar">
-        <a class ="display-2" style="text-decoration: none;">Prefix<img class="search-icon" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"></a>
+        <a class ="display-2" style="text-decoration: none;">About Dictionary<img class="search-icon" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"></a>
    </nav>
    </header>
 <body>
@@ -13,25 +13,40 @@
 
         <div class="col-md-6">
          <div class="p-5 text-center">
-            <h1 class="display-1">Prefix Search</h1>
+            <h1 class="display-1">Dictionary Search</h1>
           </div>
+
+   
           <div class="form">
             <i class="fa fa-search"></i>
+          <input id="typeahead-basic" type="text"class="form-control form-input" [(ngModel)]="model" [ngbTypeahead]="search" />
+          
+          <hr/>
+          <pre lass="form-control form-input">{{ model | json }}</pre>
+          <span class="left-pan"><i class="fa fa-microphone"></i></span>
+         </div>
+          <!-- <div class="form">
+            <i class="fa fa-search"></i>
             <section>
-            <input name="searchInput" type="text" class="form-control form-input" placeholder="Search anything...">
-         </section>
+            <input name="searchInput" [(ngModel)]="searchInput" type="text" class="form-control form-input" placeholder="Search anything...">
+         
             <article>
-               <h6> Results </h6>
+               <p></p>
+               <h6 class="display-1"> Results</h6>
                <ul>
-                 <li *ngFor="let programmingLanguage of
-                               programmingLanguages | search: searchInput">
-                    {{programmingLanguage}}
-                 </li>
+                  <li class="display-1" *ngFor="let programmingLanguage of
+                  programmingLanguages | search: searchInput">
+       {{programmingLanguage}}
+    </li>
                </ul>
            </article>
+         </section>
             <span class="left-pan"><i class="fa fa-microphone"></i></span>
-          </div>
+          </div> -->
         </div>
+      
+      
+
         <div class="icons_container  d-flex justify-content-center align-items-center">
       <a style="color: #333;" href="https://github.com/indexjoseph" target="_blank">
 
