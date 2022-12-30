@@ -4,6 +4,8 @@ body{
     background: #2C2F33;
 }
 
+::ng-deep .dropdown-menu { width: 100%; }
+
 .search-icon{
   justify-content: space-around;
   height: 20px;
@@ -12,6 +14,10 @@ body{
 }
 .navbar{
   background-color: #CFCDC2;
+}
+
+.typeahead-basic{
+  width: 100%;
 }
 
 .display-2 {
