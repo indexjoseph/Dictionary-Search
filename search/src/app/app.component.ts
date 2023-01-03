@@ -4,7 +4,7 @@ import { Observable, OperatorFunction, Subject, merge } from 'rxjs';
 import { filter } from 'rxjs/internal/operators/filter';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import dictionary from './dictionary.json';
-
+import { FormsModule, NgForm } from '@angular/forms';
 const words : string[]  = dictionary.words;
 
 @Component({
@@ -15,6 +15,13 @@ const words : string[]  = dictionary.words;
 })
 
 export class AppComponent {
+onSubmit(model : any) : void {
+	alert(model);
+}
+itemSelected($event : any) {
+    alert($event.item);
+  }
+
     title = 'search';
     
     public model: any;
@@ -22,7 +29,6 @@ export class AppComponent {
     @ViewChild('instance', { static: true }) instance: NgbTypeahead;
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
-
 	search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) => {
 		const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
 		const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
@@ -35,5 +41,6 @@ export class AppComponent {
             )
 		);
 	};
+
 }
     

@@ -12,12 +12,18 @@
             <div class="p-5 text-center">
                <h1 class="display-1">Dictionary Search</h1>
             </div>
-            <div class="form">
+            <div class="form" >
                <i class="fa fa-search"></i>
-               <input id="typeahead-basic" type="text"class="form-control form-input" [(ngModel)]="model" [ngbTypeahead]="search" />
-               <hr/>
+               <input id="typeahead-focus" type="text" 
+                      class="form-control form-input" [(ngModel)]="model" 
+                      [ngbTypeahead]="search" 
+                      (focus)="focus$.next($any($event).target.value)"
+                      (selectItem)="itemSelected($event)"
+                      />
+               <hr />
                <pre>Model: {{ model | json }}</pre>
                <span class="left-pan"><i class="fa fa-microphone"></i></span>
+               <!-- <button (click)="onSubmit(myForm, $any($event).target.value)">Submit</button>  -->
             </div>
          </div>
          <div class="icons_container  d-flex justify-content-center align-items-center">

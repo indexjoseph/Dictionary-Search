@@ -10,12 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { JsonPipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
-    SearchPipe
-
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
