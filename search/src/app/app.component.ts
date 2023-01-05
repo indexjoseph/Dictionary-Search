@@ -23,7 +23,6 @@ itemSelected($event : any) {
   }
 
     title = 'search';
-    
     public model: any;
     
     @ViewChild('instance', { static: true }) instance: NgbTypeahead;

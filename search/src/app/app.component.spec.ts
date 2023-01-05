@@ -33,3 +33,7 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.content span')?.textContent).toContain('search app is running!');
   });
 });
+function expect(title: string) {
+  throw new Error('Function not implemented.');
+}
+
