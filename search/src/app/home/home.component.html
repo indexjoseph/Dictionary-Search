@@ -1,0 +1,55 @@
+
+
+<header>
+    <nav class="navbar">
+        <a class ="display-2" style="text-decoration: none;" href="https://github.com/indexjoseph/Dictionary-Search/tree/main/search">About Dictionary<img class="search-icon" src="https://www.freeiconspng.com/thumbs/search-icon-png/search-icon-png-21.png"></a>
+    </nav>
+</header>
+<body>
+    <div class="container">
+        <div class="row height d-flex justify-content-center align-items-center">
+            <div class="col-md-6">
+                <div class="p-5 text-center">
+                    <h1 class="display-1">Dictionary Search</h1>
+                </div>
+                <form #myForm="ngForm" class="form" >
+                    <i class="fa fa-search"></i>
+                    <input id="typeahead-focus" type="text" 
+                    class="form-control form-input" [(ngModel)]="model" 
+                    [ngbTypeahead]="search"
+                    />
+                    <hr />
+                    <pre>Model: {{ model | json }}</pre>
+                </form>
+            </div>
+            <div class="icons_container  d-flex justify-content-center align-items-center">
+                <a style="color: #333;" href="https://github.com/indexjoseph" target="_blank">
+                    <div class="icon github">
+                        <div class="tooltip">
+                            Github
+                        </div>
+                        <span><i class="fab fa-github"></i></span>
+                    </div>
+                </a>
+                <a style="color: #2d6cca;" href="https://www.linkedin.com/in/josepholadeji/" target="_blank">
+                    <div class="icon linkedin">
+                        <div class="tooltip">
+                            LinkedIn
+                        </div>
+                        <span><i class="fab fa-linkedin"></i></span>
+                    </div>
+                </a>
+                <a style="color: #f37724;"href="https://stackoverflow.com/users/16072784/indexjoseph" target="_blank">
+                    <div class="icon stack-overflow">
+                        <div class="tooltip">
+                            Stack Overflow
+                        </div>
+                        <span><i class="fab fa-stack-overflow"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+
