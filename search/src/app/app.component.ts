@@ -15,9 +15,7 @@ const words : string[]  = dictionary.words;
 })
 
 export class AppComponent {
-onSubmit(model : any) : void {
-	alert(model);
-}
+
 itemSelected($event : any) {
     alert($event.item);
   }
