@@ -11,8 +11,13 @@
                     <input id="typeahead-focus" type="text" 
                     class="form-control form-input" [(ngModel)]="model" 
                     [ngbTypeahead]="search"
+                    (selectItem)="itemSelected($event)"
+                    id="ngForm" name="ngForm" formControlName="ngForm"
+                    (keyup.enter)="item('sent')"
+                    
                     />
                 </form>
+                
             </div>
             <div class="icons_container  d-flex justify-content-center align-items-center">
                 <a style="color: #333;" href="https://github.com/indexjoseph" target="_blank">

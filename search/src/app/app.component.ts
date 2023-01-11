@@ -9,8 +9,5 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-	itemSelected($event: any) {
-		alert($event.item);
-	}
 	
 }
