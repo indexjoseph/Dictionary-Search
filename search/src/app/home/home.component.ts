@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, OperatorFunction, Subject, merge } from 'rxjs';
 import { filter } from 'rxjs/internal/operators/filter';
@@ -14,19 +15,21 @@ const words : string[]  = dictionary.words;
 })
 
 export class HomeComponent {
+  constructor(private router: Router) { }
+  
   static searchContent: string;
+
   itemSelected($event: any) {
     HomeComponent.searchContent = $event.item;
-    window.location.href = "/result"
-    alert(HomeComponent.searchContent);
-
+    this.router.navigate(['/result'],
+    {queryParams: {word: HomeComponent.searchContent}});
 	}
 
   item(word: string) {
     HomeComponent.searchContent = 
     (<HTMLInputElement>document.getElementById("ngForm")).value;
-    window.location.href = "/result"
-    alert(HomeComponent.searchContent);
+    this.router.navigate(['/result'], 
+    {queryParams: {word: HomeComponent.searchContent}});
   }
 
   title = 'search';
@@ -37,10 +40,11 @@ export class HomeComponent {
   click$ = new Subject<string>();
 
   addWord(words: string[], word : string) : string[] {
-
-    words.push(word);
+    if(!words.includes(word))
+      words.push(word);
     return words;
   }
+
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) => {
     const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
     const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
