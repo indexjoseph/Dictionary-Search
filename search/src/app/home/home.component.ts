@@ -4,7 +4,7 @@ import { Observable, OperatorFunction, Subject, merge } from 'rxjs';
 import { filter } from 'rxjs/internal/operators/filter';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import dictionary from '../dictionary.json';
-import { FormsModule, NgForm } from '@angular/forms';
+import { ResultComponent } from '../result/result.component';
 const words : string[]  = dictionary.words;
 
 @Component({
@@ -14,17 +14,19 @@ const words : string[]  = dictionary.words;
 })
 
 export class HomeComponent {
-  public searchContent : string;
-
+  static searchContent: string;
   itemSelected($event: any) {
-    this.searchContent = $event.item;
-		alert(this.searchContent);
+    HomeComponent.searchContent = $event.item;
+    window.location.href = "/result"
+    alert(HomeComponent.searchContent);
+
 	}
 
   item(word: string) {
-    this.searchContent = (<HTMLInputElement>document.getElementById("ngForm")).value;
-    alert(this.searchContent);
-    
+    HomeComponent.searchContent = 
+    (<HTMLInputElement>document.getElementById("ngForm")).value;
+    window.location.href = "/result"
+    alert(HomeComponent.searchContent);
   }
 
   title = 'search';
@@ -35,6 +37,7 @@ export class HomeComponent {
   click$ = new Subject<string>();
 
   addWord(words: string[], word : string) : string[] {
+
     words.push(word);
     return words;
   }
@@ -53,4 +56,6 @@ export class HomeComponent {
     };
     
   }
+
+
   
