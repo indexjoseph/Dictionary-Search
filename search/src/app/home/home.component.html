@@ -9,10 +9,10 @@
                 <form #myForm="ngForm" class="form" >
                     <i class="fa fa-search"></i>
                     <input id="typeahead-focus" type="text" 
-                    class="form-control form-input" [(ngModel)]="model" 
+                    class="form-control form-input" 
                     [ngbTypeahead]="search"
                     (selectItem)="itemSelected($event)"
-                    id="ngForm" name="ngForm" formControlName="ngForm"
+                    id="ngForm"
                     (keyup.enter)="item('sent')"
                     />
                 </form>

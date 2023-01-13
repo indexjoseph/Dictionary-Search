@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from '../home/home.component';
+import { DictionaryService } from '../dictionary.service';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-result',
@@ -8,10 +9,31 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class ResultComponent {
-  //TODO: https://stackoverflow.com/questions/46213737/angular-append-query-parameters-to-url
+  
   word : string = HomeComponent.searchContent;
-  constructor(private http: HttpClient){}
+  // public service : DictionaryService;
+  // constructuor(service: DictionaryService){
+  //   // service.getData(this.word).subscribe(data=> (console.warn(data)))
+  
+  // }
+  
+  // onClick() : void{
+  //   console.log("Test");
+  //   this.service.getData(this.word).subscribe(data=> (console.log(data)))
+  
+  //   // alert(this.word);
+  // }
+  
+  api_key: string = "924877a3-f8ff-4be4-8bbe-ab2a8da67232";
+  constructor(private http: HttpClient) { }
+  
+  url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${this.word}?key=${this.api_key}`;
+  data = this.http.get(this.url);
+  
+  
   onClick() : void{
-    alert(this.word);
+    console.log("Test");
+    this.data.subscribe(data=> (console.log(data)));
   }
+  
 }
