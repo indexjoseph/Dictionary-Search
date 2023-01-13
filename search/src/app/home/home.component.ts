@@ -13,43 +13,63 @@ const words : string[]  = dictionary.words;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-
+/**
+ * 
+ */
 export class HomeComponent {
-  constructor(private router: Router) { }
+  private router: Router;
+
+  /**
+   * 
+   * @param router 
+   */
+  constructor(router: Router) { this.router = router; }
   
-  static searchContent: string;
-
+  /**
+   * 
+   * @param $event 
+   */
   itemSelected($event: any) {
-    HomeComponent.searchContent = $event.item;
-    this.router.navigate(['/result'],
-    {queryParams: {word: HomeComponent.searchContent}});
-	}
-
-  item(word: string) {
-    HomeComponent.searchContent = 
-    (<HTMLInputElement>document.getElementById("ngForm")).value;
-    this.router.navigate(['/result'], 
-    {queryParams: {word: HomeComponent.searchContent}});
+    let query: string = $event.item;
+    this.router.navigate(['/result'], {queryParams: {search: query}});
   }
-
-  title = 'search';
-  public model: any;
+  
+  /**
+   * 
+   * @param word 
+   */
+  item(word: string) {
+    let query: string = (<HTMLInputElement>document.getElementById("ngForm")).value;
+    this.router.navigate(['/result'], {queryParams: {search: query}});
+  }
+  
   
   @ViewChild('instance', { static: true }) instance: NgbTypeahead;
   focus$ = new Subject<string>();
   click$ = new Subject<string>();
-
-  addWord(words: string[], word : string) : string[] {
+  
+  /**
+   * 
+   * @param words 
+   * @param word 
+   * @returns 
+   */
+  addWord(words: string[], word: string): string[] {
     if(!words.includes(word))
       words.push(word);
     return words;
   }
-
+  
+  /**
+   * 
+   * @param text$ 
+   * @returns {map}
+   */
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) => {
     const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
     const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
     const inputFocus$ = this.focus$;
-
+    
     return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
       map((searchedTerm) =>
       (searchedTerm === '' ? words : this.addWord(words, searchedTerm) && words.filter((word : string) => 
@@ -60,6 +80,6 @@ export class HomeComponent {
     };
     
   }
-
-
+  
+  
   
