@@ -40,7 +40,8 @@ export class HomeComponent {
    */
   item(word: string) {
     let query: string = (<HTMLInputElement>document.getElementById("ngForm")).value;
-    this.router.navigate(['/result'], {queryParams: {search: query}});
+    if(query != null && query != "")
+      this.router.navigate(['/result'], {queryParams: {search: query}});
   }
   
   
