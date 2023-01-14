@@ -2,7 +2,11 @@ body{
     background: #212529!important;
 }
 
-button{
-    height: 25px;
-    width: 50px;
+.display-1{
+    color: #FAF8F6;
+    white-space: nowrap;
+    font-size: xx-large;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-top: 25px;
 }
