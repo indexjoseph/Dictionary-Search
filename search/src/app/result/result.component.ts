@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { take, first, Observable } from 'rxjs';
-import { stringify } from 'querystring';
-import { throws } from 'assert';
+import { take, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-result',
@@ -17,7 +15,7 @@ import { throws } from 'assert';
 export class ResultComponent {
   
   private word : string;
-  private apiKey: string = "924877a3-f8ff-4be4-8bbe-ab2a8da67232";
+  private apiKey: string = "50bfe276-2aef-4826-b93c-100c4528c37f";
   private url: string;
   private data: Observable<Object>;
   private  definition: string = "my style";
@@ -35,7 +33,8 @@ export class ResultComponent {
       this.word = params['search'];
     });
 
-    this.url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${this.word}?key=${this.apiKey}`;
+    this.url = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/`
+    + `${this.word}?key=${this.apiKey}`;
 
     // A NOTE REGARDING UNSUBSCRIBING    
     // @Reto and @codef0rmer had quite rightly pointed out that, as per the official docs,
@@ -44,13 +43,14 @@ export class ResultComponent {
     this.data = this.http.get(this.url);
   }
   
-  ngOnInit() {
+  ngOnInit(): void {
     this.data.pipe(take(1)).subscribe((info) => {this.jsonData = info});
   };
 
   
   public getDefintion(): string {
-    return this.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1].substring(4);
+    if(typeof this.jsonData == 'object') return `No Results Found for ${this.word}`;
+    return `Result: ${this.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1]}`
   }
   
   onClick() : void{
