@@ -69,10 +69,10 @@ export class ResultComponent {
   public getDefintion(): string {
     // console.log(this.jsonData);
     // console.log(Array.isArray(this.jsonData))
-    console.log("Definition" + ResultComponent.jsonData);
+    // console.log("Definition" + ResultComponent.jsonData);
     // if(Array.isArray(ResultComponent.jsonData) === true) { return `No Results Found for ${this.word}`; }
-    // return `Result: ${this.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1]}`
-    return '';
+    return `Result: ${ResultComponent.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1]}`
+    // return '';
   }
   
   
