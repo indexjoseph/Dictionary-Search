@@ -26,7 +26,7 @@ import { ResultComponent } from './result/result.component';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent, HomeComponent, AboutComponent, ResultComponent]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule {}
