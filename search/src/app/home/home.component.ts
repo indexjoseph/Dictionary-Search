@@ -29,7 +29,9 @@ export class HomeComponent {
    */
   itemSelected($event: any) {
     let query: string = $event.item;
+    
     this.router.navigate(['/result'], {queryParams: {search: query}});
+    
   }
   
   /**

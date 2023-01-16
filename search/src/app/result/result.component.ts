@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { take, Observable } from 'rxjs';
+import { take, Observable, first } from 'rxjs';
+import { readSync } from 'fs';
 
 @Component({
   selector: 'app-result',
@@ -10,8 +11,8 @@ import { take, Observable } from 'rxjs';
 })
 
 /**
- * 
- */
+* 
+*/
 export class ResultComponent {
   
   private word : string;
@@ -20,22 +21,24 @@ export class ResultComponent {
   private data: Observable<Object>;
   private  definition: string = "my style";
   private synonyms: string[];
-  private jsonData: any;
-
+  public static jsonData: any;
+  
   /**
-   * 
-   * @param http 
-   * @param activatedRoute 
-   */
+  * 
+  * @param http 
+  * @param activatedRoute 
+  */
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
 
+    
     this.activatedRoute.queryParams.subscribe(params => {
       this.word = params['search'];
     });
-
+    // https://www.knowledgehut.com/blog/web-development/make-api-calls-angular
+    // Stanndard way of making API calls
     this.url = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/`
     + `${this.word}?key=${this.apiKey}`;
-
+    
     // A NOTE REGARDING UNSUBSCRIBING    
     // @Reto and @codef0rmer had quite rightly pointed out that, as per the official docs,
     // an unsubscribe() inside the components onDestroy() method is unnecessary in this instance. 
@@ -44,17 +47,40 @@ export class ResultComponent {
   }
   
   ngOnInit(): void {
-    this.data.pipe(take(1)).subscribe((info) => {this.jsonData = info});
-  };
 
+    // this.data.subscribe((info) => {this.jsonData = info});
+    const merriamWebAPICall = this.data.subscribe({
+      next(info) {
+        // if(info !== undefined){
+          console.log("Subscription " + info);
+          setJsonData(info);
+        // }
+      }
+      
+    });
+    
+    // Stop listening for location after 10 seconds
+    setTimeout(() => {
+      merriamWebAPICall.unsubscribe();
+    }, 5000);
+  };
+  
   
   public getDefintion(): string {
-    if(typeof this.jsonData == 'object') return `No Results Found for ${this.word}`;
-    return `Result: ${this.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1]}`
+    // console.log(this.jsonData);
+    // console.log(Array.isArray(this.jsonData))
+    console.log("Definition" + ResultComponent.jsonData);
+    // if(Array.isArray(ResultComponent.jsonData) === true) { return `No Results Found for ${this.word}`; }
+    // return `Result: ${this.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1]}`
+    return '';
   }
   
-  onClick() : void{
-    console.log("Test");
-  }
-
+  
+  
 }
+
+function setJsonData(info: Object) {
+  
+  ResultComponent.jsonData = info;
+}
+
