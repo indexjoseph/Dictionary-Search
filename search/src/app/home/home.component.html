@@ -1,5 +1,5 @@
 
-<body style="background-color: #343a40">
+<body >
     <div class="container">
         <div class="row height d-flex justify-content-center align-items-center">
             <div class="col-md-6">
@@ -9,10 +9,14 @@
                 <form #myForm="ngForm" class="form" >
                     <i class="fa fa-search"></i>
                     <input id="typeahead-focus" type="text" 
-                    class="form-control form-input" [(ngModel)]="model" 
+                    class="form-control form-input" 
                     [ngbTypeahead]="search"
+                    (selectItem)="itemSelected($event)"
+                    id="ngForm"
+                    (keyup.enter)="item('sent')"
                     />
                 </form>
+                
             </div>
             <div class="icons_container  d-flex justify-content-center align-items-center">
                 <a style="color: #333;" href="https://github.com/indexjoseph" target="_blank">
