@@ -9,12 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ResultComponent } from './result/result.component';
+import { MasterComponentComponent } from './master-component/master-component.component';
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     HomeComponent,
-    ResultComponent
+    ResultComponent,
+    MasterComponentComponent
   ],
   imports: [
     BrowserModule,
