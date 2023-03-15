@@ -35,7 +35,7 @@ export class ResultComponent {
       this.word = params['search'];
     });
     // https://www.knowledgehut.com/blog/web-development/make-api-calls-angular
-    // Stanndard way of making API calls
+    // Standard way of making API calls
     this.url = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/`
     + `${this.word}?key=${this.apiKey}`;
     
