@@ -16,7 +16,7 @@ import { readSync } from 'fs';
 export class ResultComponent {
   
   private word : string;
-  private apiKey: string = "50bfe276-2aef-4826-b93c-100c4528c37f";
+  private apiKey: string = "";
   private url: string;
   private data: Observable<Object>;
   private  definition: string = "my style";
@@ -29,15 +29,12 @@ export class ResultComponent {
   * @param activatedRoute 
   */
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
-
-    
     this.activatedRoute.queryParams.subscribe(params => {
       this.word = params['search'];
     });
     // https://www.knowledgehut.com/blog/web-development/make-api-calls-angular
     // Stanndard way of making API calls
-    this.url = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/`
-    + `${this.word}?key=${this.apiKey}`;
+    this.url = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${this.word}?key=${this.apiKey}`;
     
     // A NOTE REGARDING UNSUBSCRIBING    
     // @Reto and @codef0rmer had quite rightly pointed out that, as per the official docs,
@@ -47,7 +44,6 @@ export class ResultComponent {
   }
   
   ngOnInit(): void {
-
     // this.data.subscribe((info) => {this.jsonData = info});
     const merriamWebAPICall = this.data.subscribe({
       next(info) {
@@ -65,7 +61,6 @@ export class ResultComponent {
     }, 5000);
   };
   
-  
   public getDefintion(): string {
     // console.log(this.jsonData);
     // console.log(Array.isArray(this.jsonData))
@@ -74,13 +69,9 @@ export class ResultComponent {
     return `Result: ${ResultComponent.jsonData[0]['def'][0]['sseq'][0][0][1]["dt"][0][1]}`
     // return '';
   }
-  
-  
-  
 }
 
 function setJsonData(info: Object) {
-  
   ResultComponent.jsonData = info;
 }
 
